@@ -1,0 +1,100 @@
+﻿@model IEnumerable<MCAWebsiteMVC.Models.Student>
+
+@{
+    ViewBag.Title = "Student List";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+   
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900;  margin-bottom: 20px;" align="center">
+            Student Details
+        </h2>
+        <div class="entry">
+            <table class="table" id="studentTable" style="background-color: transparent; font-size: 14px; margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.stud_id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.stud_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Semester.sem_no)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.stud_batch)
+                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.stud_email)
+                        </th>*@
+
+                        <th style="text-align: center">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody style="background-color: transparent;">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="background-color: transparent;">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stud_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stud_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Semester.sem_no)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stud_batch)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.stud_email)
+                            </td>*@
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.stud_id }, new { @class = "btn btn-success btn-xs" })
+                                @Html.ActionLink("Details", "Details", new { id = item.stud_id }, new { @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.stud_id }, new { @class = "btn btn-danger btn-xs" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #content -->
+
+<div id="sidebar" style="margin-top: 200px;">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px; color: red;">
+            @Html.ActionLink("Add Student", "Create", "Student", new { style = "color: red;" } )
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Faculty Details", "Index", "Faculty")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Change Password", "Index", "Admin")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Logout", "Index", "Home")
+        </li>
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#studentTable').DataTable();
+    });
+</script>

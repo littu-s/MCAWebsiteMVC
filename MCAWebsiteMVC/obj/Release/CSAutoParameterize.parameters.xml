@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CelasisEntities-Web.config Connection String" description="CelasisEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.CelasisModel.csdl|res://*/Models.CelasisModel.ssdl|res://*/Models.CelasisModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Celasis.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\littu\\OneDrive\\Desktop\\Just\ IT\\week\ 5\\Projects\\MCAWebsiteMVC\\MCAWebsiteMVC\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CelasisEntities']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,112 @@
+﻿@model MCAWebsiteMVC.Models.Assignment
+
+@{
+    ViewBag.Title = "Upload Assignment";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900; margin-bottom: 20px;">
+            Upload Assignment
+        </h2>
+        <div class="entry" style="font-family: 'Times New Roman', Times, serif; font-size: medium">
+            @using (Html.BeginForm("Upload", "Assignment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.assign_title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.assign_title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.assign_title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.assignUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="assignUpload" width="75" required>
+                            @Html.ValidationMessageFor(model => model.assignUpload, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.sub_id, "Subject", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.sub_id, ViewBag.sub_id as SelectList, "--Select Subject--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.sub_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.stud_id, "Submitted By", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <textbox id="stud_name" class="form-control" style="width: 275px;">@ViewBag.name</textbox>
+                            @*@Html.TextBoxFor(model => model.stud_id, (string)ViewBag.name, new { @class = "form-control",})*@
+                            @Html.ValidationMessageFor(model => model.stud_id, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.stud_id, new { Value = ViewBag.fac_id })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @*<div>
+                                @Html.ActionLink("Back to List", "Index")
+                            </div>*@
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Submit Assignment " class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+    <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #content -->
+<div id="sidebar" style="margin-top: 175px;">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Profile", "StudentProfile", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Assignment Details", "UploadFiles", "Assignment")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Results", "SemResult", "Exam")
+            <a href="Exam.aspx">Examination</a>
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Change Password", "ChangePassword", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Logout", "Index", "Home")
+        </li>
+
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+        //$(document).ready(function () {
+        //    $("#sub_id").change(function () {
+        //        $.get("/Assignment/GetFaculty", { sub_id: $("#sub_id").val() }, function (data) {
+        //            $("#fac_id").empty();
+        //            $.each(data, function (index, row) {
+        //                $("#fac_id").append("<option value='" + row.fac_id + "'>" + row.fac_name + "</option>")
+        //            });
+        //        });
+        //    })
+        //});
+
+</script>

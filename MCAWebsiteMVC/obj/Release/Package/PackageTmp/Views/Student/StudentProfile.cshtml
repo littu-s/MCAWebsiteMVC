@@ -1,0 +1,151 @@
+﻿@model MCAWebsiteMVC.Models.Student
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900;  margin-bottom: 20px;">
+            Welcome @Html.DisplayFor(model => model.stud_name)
+        </h2>
+        <div class="entry" style="font-family: 'Times New Roman', Times, serif; font-size: medium">
+            @*<h4>Student Profile</h4>*@
+            <hr />
+            <dl class="dl-horizontal" style="margin-top: 50px;">
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_fname)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_fname)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_lname)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_lname)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Semester.sem_no)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Semester.sem_no)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_batch)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_batch)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_phone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_phone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_dob)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_dob)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_house)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_house)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_street)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_street)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_city)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_city)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_state)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_state)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_country)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_country)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.stud_pin)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.stud_pin)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #content -->
+<div id="sidebar" style="margin-top: 175px;">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Profile", "StudentProfile", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Assignment Details", "UploadFiles", "Assignment")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Results", "SemResult", "Exam")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Change Password", "ChangePassword", "Student")
+            </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Logout", "Index", "Home")
+        </li>
+
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>

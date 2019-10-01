@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Course";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: 20px;">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Content/media/images/mcc_bglr.png" style="width:100%; height: 500px;">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/media/images/block3.jpg" style="width:100%; height: 500px;">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/media/images/block5.jpg" style="width:100%; height: 500px;">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+@*<div id="splash"></div>*@
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900; font-weight: bold; margin-bottom: 20px;">
+            Course Details
+        </h2>
+        <div class="entry">
+            <p style="font-size: 18px;">
+                Master of Computer Applications (MCA) is a three-year(6 semester) or two-year(4 semester) professional Master's Degree in computer science awarded in India. The course was designed to meet the growing demand for qualified professionals in the field of Information Technology (computer software). It is a postgraduate course that can be taken up after obtaining a Bachelor's Degree.
+            </p>
+            <br />
+            <p style="font-size: 18px;">
+                The MCA program focuses on providing a sound theoretical background as well as good practical exposure to students in the relevant areas. It is intended to provide a modern, industry oriented education in applied computer science. It aims at producing trained professionals who can successfully meet the demands of the information technology industry. The Cousre syllabus is updated every year by conducting Board of Studies meeting comprising experts from the industry, university representative and subject experts/academicians from other universities and colleges. By providing concept-oriented subject knowledge through a high quality teaching that is supplemented with practical training, the Department aims to bring out brightest minds into the world of computers and technology.
+            </p>
+        </div>
+    </div>
+
+    <div class="post">
+        <div class="entry">
+            <h2 style="font-size: xx-large; color: #FF9900; font-weight: lighter;margin-bottom: 20px;">
+                Duration
+            </h2>
+            <p>
+                <span style="font-weight: normal; font-size: 18px;">
+                    ➢ MCA Regular(3 years - 6 semesters):
+                </span>
+                6th semester industry internship project
+            </p>
+
+            <p>
+                <span style="font-weight: normal; font-size: 18px;">
+                    ➢ MCA Lateral(2 years - 4 semesters):
+                </span>
+                4th semester industry internship project
+            </p>
+        </div>
+    </div>
+
+    <div class="post">
+        <div class="entry">
+            <h2 style="font-size: xx-large; color: #FF9900; font-weight: lighter;margin-bottom: 20px;">
+                Eligibility
+            </h2>
+            <p style="font-size: 18px;">
+                Should have studied Mathematics / Computer Science / Business Mathematics / Statistics / Computer Applications / Computer Programming or Electronics as a subject at PUC or equivalent level (XII Std) or at the undergraduate Degree level with a minimum of 50%.
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+<div id="sidebar" style="margin-bottom: 150px;">
+    <ul>
+        <li style="margin-bottom: 10px;">
+            <img alt="" src="~/Content/media/images/syllabus.jpg" style="margin-left: 75px; width: 100px; height: 125px;" />
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; align-content:center; margin-left: 100px; margin-bottom: 50px;">
+            <a href="~/Content/media/Syllabus/Syllabus.pdf" target="_blank">Syllabus</a>
+        </li>
+
+        <li style="margin-bottom: 10px;">
+            <img alt="" src="~/Content/media/images/admission.jpg" style="margin-left: 75px; width: 100px; height: 125px;" />
+        </li>
+
+        <li style="font-family: 'Times New Roman', Times, serif; margin-left: 75px; margin-bottom: 50px;">
+            @Html.ActionLink("Admission Details", "Admission", "Home", new { target = "_blank" })
+        </li>
+
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: large; margin-bottom: 10px;">
+            <img alt="" src="~/Content/media/images/placement.jpg" style="margin-left: 75px; width: 100px; height: 125px;" />
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; align-self: center; margin-left: 100px; margin-bottom: 50px;">
+            @Html.ActionLink("Placement", "Placement", "Home", new { target = "_blank" })
+        </li>
+
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>
+

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<MCAWebsiteMVC.Models.EndSemester>
+
+@{
+    ViewBag.Title = "Semester Result";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900; margin-bottom: 20px;">
+            Semester Result
+        </h2>
+        <div class="entry" style="font-family: 'Times New Roman', Times, serif; font-size: medium">
+            <table class="table" id="semTable" style="font-size:14px;">
+                <thead style="background-color: transparent;">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject.sub_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.internal_mark)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.external_mark)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.total)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody style="background-color: transparent;">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="background-color: transparent;">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject.sub_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.internal_mark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.external_mark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.total)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.status)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="post">
+        <div class="entry" style="font-family: 'Times New Roman', Times, serif; font-size: medium; " align="center">
+            @Html.ActionLink("CIA Marks", "CiaResult", "Exam", new { @class = "btn btn-info" })
+        </div>
+    </div>
+    <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #content -->
+<div id="sidebar" style="margin-top: 175px;">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Profile", "StudentProfile", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Upload Assignment", "Upload", "Assignment")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Results", "SemResult", "Exam")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Change Password", "ChangePassword", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Logout", "Index", "Home")
+        </li>
+
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>
+
+<script>
+    $(document).ready(function () {
+        $('#semTable').DataTable();
+    });
+</script>

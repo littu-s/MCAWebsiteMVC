@@ -1,0 +1,102 @@
+﻿@model IEnumerable<MCAWebsiteMVC.Models.CiaDetails>
+
+@{
+    ViewBag.Title = "Internals Result";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900; margin-bottom: 20px;">
+            Internals Result
+        </h2>
+        <div class="entry" style="font-family: 'Times New Roman', Times, serif; font-size: medium">
+            <table class="table" id="ciaTable" style="font-size:14px;">
+                <thead style="background-color: transparent;">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject.sub_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.cia1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.cia2)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.assign_marks)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.total)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Student.stud_fname)
+                            </th>*@
+
+                    </tr>
+                </thead>
+
+                <tbody style="background-color: transparent;">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="background-color: transparent;">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject.sub_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cia1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cia2)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.assign_marks)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.total)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Student.stud_fname)
+                                </td>*@
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #content -->
+<div id="sidebar" style="margin-top: 175px;">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Profile", "StudentProfile", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Upload Assignment", "Upload", "Assignment")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Results", "SemResult", "Exam")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Change Password", "ChangePassword", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Logout", "Index", "Home")
+        </li>
+
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>
+
+<script>
+    $(document).ready(function () {
+        $('#ciaTable').DataTable();
+    });
+</script>

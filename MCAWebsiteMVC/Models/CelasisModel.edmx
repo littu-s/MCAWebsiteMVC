@@ -1,0 +1,784 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CelasisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="assign_id" />
+          </Key>
+          <Property Name="assign_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="assign_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="assign_file" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sub_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="stud_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fac_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="mark" Type="int" />
+        </EntityType>
+        <EntityType Name="CiaDetails">
+          <Key>
+            <PropertyRef Name="cia_id" />
+          </Key>
+          <Property Name="cia_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stud_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sub_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cia1" Type="int" Nullable="false" />
+          <Property Name="cia2" Type="int" Nullable="false" />
+          <Property Name="assign_marks" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EndSemester">
+          <Key>
+            <PropertyRef Name="end_id" />
+          </Key>
+          <Property Name="end_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="stud_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="internal_mark" Type="int" Nullable="false" />
+          <Property Name="external_mark" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="fac_id" />
+          </Key>
+          <Property Name="fac_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fac_fname" Type="varchar" MaxLength="30" />
+          <Property Name="fac_lname" Type="varchar" MaxLength="30" />
+          <Property Name="fac_degree" Type="varchar" MaxLength="20" />
+          <Property Name="fac_doj" Type="date" />
+          <Property Name="fac_dob" Type="date" />
+          <Property Name="fac_email" Type="varchar" MaxLength="50" />
+          <Property Name="fac_phone" Type="varchar" MaxLength="15" />
+          <Property Name="fac_house" Type="varchar" MaxLength="30" />
+          <Property Name="fac_street" Type="varchar" MaxLength="30" />
+          <Property Name="fac_city" Type="varchar" MaxLength="30" />
+          <Property Name="fac_state" Type="varchar" MaxLength="30" />
+          <Property Name="fac_country" Type="varchar" MaxLength="50" />
+          <Property Name="fac_pin" Type="varchar" MaxLength="10" />
+          <Property Name="fac_name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="uname" />
+          </Key>
+          <Property Name="uname" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="pwd" Type="varchar" MaxLength="30" />
+          <Property Name="rem_me" Type="bit" />
+          <Property Name="role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="sem_id" />
+          </Key>
+          <Property Name="sem_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sem_no" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="stud_id" />
+          </Key>
+          <Property Name="stud_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="stud_fname" Type="varchar" MaxLength="30" />
+          <Property Name="stud_lname" Type="varchar" MaxLength="30" />
+          <Property Name="stud_batch" Type="int" />
+          <Property Name="sem_id" Type="int" />
+          <Property Name="stud_dob" Type="date" />
+          <Property Name="stud_email" Type="varchar" MaxLength="50" />
+          <Property Name="stud_phone" Type="varchar" MaxLength="15" />
+          <Property Name="stud_house" Type="varchar" MaxLength="50" />
+          <Property Name="stud_street" Type="varchar" MaxLength="50" />
+          <Property Name="stud_city" Type="varchar" MaxLength="50" />
+          <Property Name="stud_state" Type="varchar" MaxLength="50" />
+          <Property Name="stud_country" Type="varchar" MaxLength="50" />
+          <Property Name="stud_pin" Type="varchar" MaxLength="10" />
+          <Property Name="stud_name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sub_name" Type="varchar(max)" />
+          <Property Name="sub_syllabus" Type="varchar" MaxLength="50" />
+          <Property Name="sem_id" Type="int" />
+          <Property Name="fac_id" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__Assignmen__fac_i__3B75D760">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="fac_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assignmen__stud___3A81B327">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assignmen__sub_i__398D8EEE">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CiaDetail__stud___4316F928">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="CiaDetails" Type="Self.CiaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Principal>
+            <Dependent Role="CiaDetails">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CiaDetail__sub_i__4222D4EF">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="CiaDetails" Type="Self.CiaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="CiaDetails">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EndSemest__stud___35BCFE0A">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="EndSemester" Type="Self.EndSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Principal>
+            <Dependent Role="EndSemester">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EndSemest__sub_i__34C8D9D1">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="EndSemester" Type="Self.EndSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="EndSemester">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Faculty__fac_id__2B3F6F97">
+          <End Role="Login" Type="Self.Login" Multiplicity="1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="uname" />
+            </Principal>
+            <Dependent Role="Faculty">
+              <PropertyRef Name="fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__sem_id__286302EC">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="sem_id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="sem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__stud_id__276EDEB3">
+          <End Role="Login" Type="Self.Login" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="uname" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject__fac_id__2F10007B">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="fac_id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject__sem_id__2E1BDC42">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="sem_id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="sem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CelasisModelStoreContainer">
+          <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CiaDetails" EntityType="Self.CiaDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EndSemester" EntityType="Self.EndSemester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Assignmen__fac_i__3B75D760" Association="Self.FK__Assignmen__fac_i__3B75D760">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assignmen__stud___3A81B327" Association="Self.FK__Assignmen__stud___3A81B327">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assignmen__sub_i__398D8EEE" Association="Self.FK__Assignmen__sub_i__398D8EEE">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CiaDetail__stud___4316F928" Association="Self.FK__CiaDetail__stud___4316F928">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="CiaDetails" EntitySet="CiaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CiaDetail__sub_i__4222D4EF" Association="Self.FK__CiaDetail__sub_i__4222D4EF">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="CiaDetails" EntitySet="CiaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EndSemest__stud___35BCFE0A" Association="Self.FK__EndSemest__stud___35BCFE0A">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="EndSemester" EntitySet="EndSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EndSemest__sub_i__34C8D9D1" Association="Self.FK__EndSemest__sub_i__34C8D9D1">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="EndSemester" EntitySet="EndSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Faculty__fac_id__2B3F6F97" Association="Self.FK__Faculty__fac_id__2B3F6F97">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Faculty" EntitySet="Faculty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__sem_id__286302EC" Association="Self.FK__Student__sem_id__286302EC">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__stud_id__276EDEB3" Association="Self.FK__Student__stud_id__276EDEB3">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject__fac_id__2F10007B" Association="Self.FK__Subject__fac_id__2F10007B">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject__sem_id__2E1BDC42" Association="Self.FK__Subject__sem_id__2E1BDC42">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CelasisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="assign_id" />
+          </Key>
+          <Property Name="assign_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assign_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="assign_file" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sub_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stud_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fac_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mark" Type="Int32" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK__Assignmen__fac_i__3B75D760" FromRole="Assignment" ToRole="Faculty" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Assignmen__stud___3A81B327" FromRole="Assignment" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__Assignmen__sub_i__398D8EEE" FromRole="Assignment" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="CiaDetails">
+          <Key>
+            <PropertyRef Name="cia_id" />
+          </Key>
+          <Property Name="cia_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stud_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sub_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cia1" Type="Int32" Nullable="false" />
+          <Property Name="cia2" Type="Int32" Nullable="false" />
+          <Property Name="assign_marks" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__CiaDetail__stud___4316F928" FromRole="CiaDetails" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__CiaDetail__sub_i__4222D4EF" FromRole="CiaDetails" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="EndSemester">
+          <Key>
+            <PropertyRef Name="end_id" />
+          </Key>
+          <Property Name="end_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sub_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stud_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="internal_mark" Type="Int32" Nullable="false" />
+          <Property Name="external_mark" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__EndSemest__stud___35BCFE0A" FromRole="EndSemester" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__EndSemest__sub_i__34C8D9D1" FromRole="EndSemester" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="fac_id" />
+          </Key>
+          <Property Name="fac_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fac_fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fac_lname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fac_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fac_doj" Type="DateTime" Precision="0" />
+          <Property Name="fac_dob" Type="DateTime" Precision="0" />
+          <Property Name="fac_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fac_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fac_house" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fac_street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fac_city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fac_state" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fac_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fac_pin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="fac_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Assignment" Relationship="Self.FK__Assignmen__fac_i__3B75D760" FromRole="Faculty" ToRole="Assignment" />
+          <NavigationProperty Name="Login" Relationship="Self.FK__Faculty__fac_id__2B3F6F97" FromRole="Faculty" ToRole="Login" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__Subject__fac_id__2F10007B" FromRole="Faculty" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="uname" />
+          </Key>
+          <Property Name="uname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pwd" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="rem_me" Type="Boolean" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK__Faculty__fac_id__2B3F6F97" FromRole="Login" ToRole="Faculty" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Student__stud_id__276EDEB3" FromRole="Login" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="sem_id" />
+          </Key>
+          <Property Name="sem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sem_no" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Student__sem_id__286302EC" FromRole="Semester" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__Subject__sem_id__2E1BDC42" FromRole="Semester" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="stud_id" />
+          </Key>
+          <Property Name="stud_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stud_fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="stud_lname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="stud_batch" Type="Int32" />
+          <Property Name="sem_id" Type="Int32" />
+          <Property Name="stud_dob" Type="DateTime" Precision="0" />
+          <Property Name="stud_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stud_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="stud_house" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stud_street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stud_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stud_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stud_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stud_pin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="stud_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Assignment" Relationship="Self.FK__Assignmen__stud___3A81B327" FromRole="Student" ToRole="Assignment" />
+          <NavigationProperty Name="CiaDetails" Relationship="Self.FK__CiaDetail__stud___4316F928" FromRole="Student" ToRole="CiaDetails" />
+          <NavigationProperty Name="EndSemester" Relationship="Self.FK__EndSemest__stud___35BCFE0A" FromRole="Student" ToRole="EndSemester" />
+          <NavigationProperty Name="Login" Relationship="Self.FK__Student__stud_id__276EDEB3" FromRole="Student" ToRole="Login" />
+          <NavigationProperty Name="Semester" Relationship="Self.FK__Student__sem_id__286302EC" FromRole="Student" ToRole="Semester" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sub_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sub_syllabus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sem_id" Type="Int32" />
+          <Property Name="fac_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Assignment" Relationship="Self.FK__Assignmen__sub_i__398D8EEE" FromRole="Subject" ToRole="Assignment" />
+          <NavigationProperty Name="CiaDetails" Relationship="Self.FK__CiaDetail__sub_i__4222D4EF" FromRole="Subject" ToRole="CiaDetails" />
+          <NavigationProperty Name="EndSemester" Relationship="Self.FK__EndSemest__sub_i__34C8D9D1" FromRole="Subject" ToRole="EndSemester" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK__Subject__fac_id__2F10007B" FromRole="Subject" ToRole="Faculty" />
+          <NavigationProperty Name="Semester" Relationship="Self.FK__Subject__sem_id__2E1BDC42" FromRole="Subject" ToRole="Semester" />
+        </EntityType>
+        <Association Name="FK__Assignmen__fac_i__3B75D760">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="fac_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assignmen__stud___3A81B327">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assignmen__sub_i__398D8EEE">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CiaDetail__stud___4316F928">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="CiaDetails" Type="Self.CiaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Principal>
+            <Dependent Role="CiaDetails">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CiaDetail__sub_i__4222D4EF">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="CiaDetails" Type="Self.CiaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="CiaDetails">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EndSemest__stud___35BCFE0A">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="EndSemester" Type="Self.EndSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Principal>
+            <Dependent Role="EndSemester">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EndSemest__sub_i__34C8D9D1">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="EndSemester" Type="Self.EndSemester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="EndSemester">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Faculty__fac_id__2B3F6F97">
+          <End Role="Login" Type="Self.Login" Multiplicity="1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="uname" />
+            </Principal>
+            <Dependent Role="Faculty">
+              <PropertyRef Name="fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject__fac_id__2F10007B">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="fac_id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="fac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__stud_id__276EDEB3">
+          <End Role="Login" Type="Self.Login" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="uname" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="stud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__sem_id__286302EC">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="sem_id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="sem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject__sem_id__2E1BDC42">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="sem_id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="sem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CelasisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assignment" EntityType="Self.Assignment" />
+          <EntitySet Name="CiaDetails" EntityType="Self.CiaDetails" />
+          <EntitySet Name="EndSemester" EntityType="Self.EndSemester" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" />
+          <EntitySet Name="Login" EntityType="Self.Login" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" />
+          <AssociationSet Name="FK__Assignmen__fac_i__3B75D760" Association="Self.FK__Assignmen__fac_i__3B75D760">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assignmen__stud___3A81B327" Association="Self.FK__Assignmen__stud___3A81B327">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assignmen__sub_i__398D8EEE" Association="Self.FK__Assignmen__sub_i__398D8EEE">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Assignment" EntitySet="Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CiaDetail__stud___4316F928" Association="Self.FK__CiaDetail__stud___4316F928">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="CiaDetails" EntitySet="CiaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CiaDetail__sub_i__4222D4EF" Association="Self.FK__CiaDetail__sub_i__4222D4EF">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="CiaDetails" EntitySet="CiaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EndSemest__stud___35BCFE0A" Association="Self.FK__EndSemest__stud___35BCFE0A">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="EndSemester" EntitySet="EndSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EndSemest__sub_i__34C8D9D1" Association="Self.FK__EndSemest__sub_i__34C8D9D1">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="EndSemester" EntitySet="EndSemester" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Faculty__fac_id__2B3F6F97" Association="Self.FK__Faculty__fac_id__2B3F6F97">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Faculty" EntitySet="Faculty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject__fac_id__2F10007B" Association="Self.FK__Subject__fac_id__2F10007B">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__stud_id__276EDEB3" Association="Self.FK__Student__stud_id__276EDEB3">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__sem_id__286302EC" Association="Self.FK__Student__sem_id__286302EC">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject__sem_id__2E1BDC42" Association="Self.FK__Subject__sem_id__2E1BDC42">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CelasisModelStoreContainer" CdmEntityContainer="CelasisEntities">
+          <EntitySetMapping Name="Assignment">
+            <EntityTypeMapping TypeName="CelasisModel.Assignment">
+              <MappingFragment StoreEntitySet="Assignment">
+                <ScalarProperty Name="assign_id" ColumnName="assign_id" />
+                <ScalarProperty Name="assign_title" ColumnName="assign_title" />
+                <ScalarProperty Name="assign_file" ColumnName="assign_file" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+                <ScalarProperty Name="fac_id" ColumnName="fac_id" />
+                <ScalarProperty Name="mark" ColumnName="mark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CiaDetails">
+            <EntityTypeMapping TypeName="CelasisModel.CiaDetails">
+              <MappingFragment StoreEntitySet="CiaDetails">
+                <ScalarProperty Name="cia_id" ColumnName="cia_id" />
+                <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="cia1" ColumnName="cia1" />
+                <ScalarProperty Name="cia2" ColumnName="cia2" />
+                <ScalarProperty Name="assign_marks" ColumnName="assign_marks" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EndSemester">
+            <EntityTypeMapping TypeName="CelasisModel.EndSemester">
+              <MappingFragment StoreEntitySet="EndSemester">
+                <ScalarProperty Name="end_id" ColumnName="end_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+                <ScalarProperty Name="internal_mark" ColumnName="internal_mark" />
+                <ScalarProperty Name="external_mark" ColumnName="external_mark" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculty">
+            <EntityTypeMapping TypeName="CelasisModel.Faculty">
+              <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="fac_id" ColumnName="fac_id" />
+                <ScalarProperty Name="fac_fname" ColumnName="fac_fname" />
+                <ScalarProperty Name="fac_lname" ColumnName="fac_lname" />
+                <ScalarProperty Name="fac_degree" ColumnName="fac_degree" />
+                <ScalarProperty Name="fac_doj" ColumnName="fac_doj" />
+                <ScalarProperty Name="fac_dob" ColumnName="fac_dob" />
+                <ScalarProperty Name="fac_email" ColumnName="fac_email" />
+                <ScalarProperty Name="fac_phone" ColumnName="fac_phone" />
+                <ScalarProperty Name="fac_house" ColumnName="fac_house" />
+                <ScalarProperty Name="fac_street" ColumnName="fac_street" />
+                <ScalarProperty Name="fac_city" ColumnName="fac_city" />
+                <ScalarProperty Name="fac_state" ColumnName="fac_state" />
+                <ScalarProperty Name="fac_country" ColumnName="fac_country" />
+                <ScalarProperty Name="fac_pin" ColumnName="fac_pin" />
+                <ScalarProperty Name="fac_name" ColumnName="fac_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="CelasisModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="rem_me" ColumnName="rem_me" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semester">
+            <EntityTypeMapping TypeName="CelasisModel.Semester">
+              <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="sem_id" ColumnName="sem_id" />
+                <ScalarProperty Name="sem_no" ColumnName="sem_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="CelasisModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+                <ScalarProperty Name="stud_fname" ColumnName="stud_fname" />
+                <ScalarProperty Name="stud_lname" ColumnName="stud_lname" />
+                <ScalarProperty Name="stud_batch" ColumnName="stud_batch" />
+                <ScalarProperty Name="sem_id" ColumnName="sem_id" />
+                <ScalarProperty Name="stud_dob" ColumnName="stud_dob" />
+                <ScalarProperty Name="stud_email" ColumnName="stud_email" />
+                <ScalarProperty Name="stud_phone" ColumnName="stud_phone" />
+                <ScalarProperty Name="stud_house" ColumnName="stud_house" />
+                <ScalarProperty Name="stud_street" ColumnName="stud_street" />
+                <ScalarProperty Name="stud_city" ColumnName="stud_city" />
+                <ScalarProperty Name="stud_state" ColumnName="stud_state" />
+                <ScalarProperty Name="stud_country" ColumnName="stud_country" />
+                <ScalarProperty Name="stud_pin" ColumnName="stud_pin" />
+                <ScalarProperty Name="stud_name" ColumnName="stud_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="CelasisModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+                <ScalarProperty Name="sub_syllabus" ColumnName="sub_syllabus" />
+                <ScalarProperty Name="sem_id" ColumnName="sem_id" />
+                <ScalarProperty Name="fac_id" ColumnName="fac_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

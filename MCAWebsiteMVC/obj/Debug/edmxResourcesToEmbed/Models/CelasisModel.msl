@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CelasisModelStoreContainer" CdmEntityContainer="CelasisEntities">
+    <EntitySetMapping Name="Assignment">
+      <EntityTypeMapping TypeName="CelasisModel.Assignment">
+        <MappingFragment StoreEntitySet="Assignment">
+          <ScalarProperty Name="assign_id" ColumnName="assign_id" />
+          <ScalarProperty Name="assign_title" ColumnName="assign_title" />
+          <ScalarProperty Name="assign_file" ColumnName="assign_file" />
+          <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+          <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+          <ScalarProperty Name="fac_id" ColumnName="fac_id" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CiaDetails">
+      <EntityTypeMapping TypeName="CelasisModel.CiaDetails">
+        <MappingFragment StoreEntitySet="CiaDetails">
+          <ScalarProperty Name="cia_id" ColumnName="cia_id" />
+          <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+          <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+          <ScalarProperty Name="cia1" ColumnName="cia1" />
+          <ScalarProperty Name="cia2" ColumnName="cia2" />
+          <ScalarProperty Name="assign_marks" ColumnName="assign_marks" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EndSemester">
+      <EntityTypeMapping TypeName="CelasisModel.EndSemester">
+        <MappingFragment StoreEntitySet="EndSemester">
+          <ScalarProperty Name="end_id" ColumnName="end_id" />
+          <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+          <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+          <ScalarProperty Name="internal_mark" ColumnName="internal_mark" />
+          <ScalarProperty Name="external_mark" ColumnName="external_mark" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculty">
+      <EntityTypeMapping TypeName="CelasisModel.Faculty">
+        <MappingFragment StoreEntitySet="Faculty">
+          <ScalarProperty Name="fac_id" ColumnName="fac_id" />
+          <ScalarProperty Name="fac_fname" ColumnName="fac_fname" />
+          <ScalarProperty Name="fac_lname" ColumnName="fac_lname" />
+          <ScalarProperty Name="fac_degree" ColumnName="fac_degree" />
+          <ScalarProperty Name="fac_doj" ColumnName="fac_doj" />
+          <ScalarProperty Name="fac_dob" ColumnName="fac_dob" />
+          <ScalarProperty Name="fac_email" ColumnName="fac_email" />
+          <ScalarProperty Name="fac_phone" ColumnName="fac_phone" />
+          <ScalarProperty Name="fac_house" ColumnName="fac_house" />
+          <ScalarProperty Name="fac_street" ColumnName="fac_street" />
+          <ScalarProperty Name="fac_city" ColumnName="fac_city" />
+          <ScalarProperty Name="fac_state" ColumnName="fac_state" />
+          <ScalarProperty Name="fac_country" ColumnName="fac_country" />
+          <ScalarProperty Name="fac_pin" ColumnName="fac_pin" />
+          <ScalarProperty Name="fac_name" ColumnName="fac_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="CelasisModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="uname" ColumnName="uname" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="rem_me" ColumnName="rem_me" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Semester">
+      <EntityTypeMapping TypeName="CelasisModel.Semester">
+        <MappingFragment StoreEntitySet="Semester">
+          <ScalarProperty Name="sem_id" ColumnName="sem_id" />
+          <ScalarProperty Name="sem_no" ColumnName="sem_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="CelasisModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+          <ScalarProperty Name="stud_fname" ColumnName="stud_fname" />
+          <ScalarProperty Name="stud_lname" ColumnName="stud_lname" />
+          <ScalarProperty Name="stud_batch" ColumnName="stud_batch" />
+          <ScalarProperty Name="sem_id" ColumnName="sem_id" />
+          <ScalarProperty Name="stud_dob" ColumnName="stud_dob" />
+          <ScalarProperty Name="stud_email" ColumnName="stud_email" />
+          <ScalarProperty Name="stud_phone" ColumnName="stud_phone" />
+          <ScalarProperty Name="stud_house" ColumnName="stud_house" />
+          <ScalarProperty Name="stud_street" ColumnName="stud_street" />
+          <ScalarProperty Name="stud_city" ColumnName="stud_city" />
+          <ScalarProperty Name="stud_state" ColumnName="stud_state" />
+          <ScalarProperty Name="stud_country" ColumnName="stud_country" />
+          <ScalarProperty Name="stud_pin" ColumnName="stud_pin" />
+          <ScalarProperty Name="stud_name" ColumnName="stud_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject">
+      <EntityTypeMapping TypeName="CelasisModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+          <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+          <ScalarProperty Name="sub_syllabus" ColumnName="sub_syllabus" />
+          <ScalarProperty Name="sem_id" ColumnName="sem_id" />
+          <ScalarProperty Name="fac_id" ColumnName="fac_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

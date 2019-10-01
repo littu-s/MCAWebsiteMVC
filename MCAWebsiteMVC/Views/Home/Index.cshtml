@@ -1,0 +1,137 @@
+﻿@model MCAWebsiteMVC.Models.Login
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: 20px;">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Content/media/images/mcc_bglr.png" style="width:100%; height: 500px;">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/media/images/block3.jpg" style="width:100%; height: 500px;">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/media/images/block5.jpg" style="width:100%; height: 500px;">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+@*<div id="splash"></div>*@
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900;">
+            Welcome to MCA Department
+        </h2>
+        <div class="entry">
+            <p style="font-size: 18px;">
+                <img src="~/Content/media/images/img08.jpg" width="143" height="143" align="left" style="margin-right: 20px; border: 6px solid #E1F1F6;" />
+                MCA Department was incepted in the year 2000.  The MCA Department is bestowed with nine faculty members. Excellent infrastructure, state-of-the-art computers with internet enabled campus and comprehensive study material makes the Department a class apart. The MCA Department helps in providing the IT industry, technical and educational organizations with world-class talent and creating some of the finest software professionals every year. The department has excelled in its teaching learning methodology and has consistent good academic track and prepares the students in a variety of areas employing various teaching and training methodologies with priority to the practical perspective. Students have also excelled in curricular and co-curricular activities and won laurels in competitions, intercollegiate fests.
+            </p>
+            <p style="font-size: 18px;">
+                Instead of stepping into the IT industry with just a bachelors degree in Computer Science, you can obtain more expertise on the subject at Mount Carmel College through the six-semester MCA course. This will ensure greater credibility as well as more experience to the employers, since the final semester is spent completely in internships.
+            </p>
+        </div>
+    </div>
+
+    <div class="post">
+        <div class="entry">
+            <h2 style="font-size: xx-large; color: #FF9900; font-weight: lighter;">
+                Infrastructure
+            </h2>
+            <p style="font-size: 18px;">
+                <span style="font-weight: bolder; font-size: 18px;"> ➢ Department library: </span>The department has an exclusive Library for MCA students apart from the main library. In addition, leading Technical journals and magazines are also available in the library.
+            </p>
+
+            <p style="font-size: 18px;">
+                <span style="font-weight: bolder; font-size: 18px;"> ➢ Department Lab: </span>The department has two labs equipped with state of art computers with the required latest software’s and Wi-Fi facility both in class rooms and labs
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end #content -->
+<div id="sidebar" style="margin-top: 100px;">
+    <ul>   
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; margin-left: 0px; margin-bottom: 75px; margin-right: 20px; border: 1px solid grey; width: 75%;">
+            <h2 style="margin-bottom: 20px; color: #FF9900; text-decoration: underline; margin-left: 100px; margin-top:20px;">
+                Login
+            </h2>
+            @using (Html.BeginForm("LoginAuthenticate", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.uname, new { htmlAttributes = new { @class = "form-control", placeholder = "Username", style="margin-left: 25px;" } })
+                            @Html.ValidationMessageFor(model => model.uname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.pwd, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", style = "margin-left: 25px;" } })
+                            @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <label style="margin-left: 20px; color: red;">
+                       @* @Html.DisplayNameFor(model => model.invalidUser )*@
+                        @ViewBag.msg
+                    </label>
+                   
+                    <div class="form-group" style="margin-bottom: 20px; ">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Login" class="btn btn-success" style="margin-right: 15px;"/>
+                            <input type="submit" value="Cancel" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </li>
+        
+        @*<li style="margin-bottom: 10px;">
+            <img alt="" src="~/Content/media/images/AICTE.jpg" style="margin-left: 40px; width: 174px; height: 126px;" />
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: small; align-content:center; margin-left: 25px; margin-bottom: 30px;">
+             Our College has a A+ re-accreditation
+        </li>
+        <li style="margin-bottom: 10px;">
+            <img alt="" src="~/Content/media/images/ugc.jpg" style="margin-left: 25px" />
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: small; align-self: center; margin-left: 20px; margin-bottom: 5px;">
+            Recognized by UGC as a College with
+        </li>
+        <li style="font-size: small; margin-left: 20px; margin-bottom: 10px;" align="center"> 
+            Potential for Excellence
+        </li>*@
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>

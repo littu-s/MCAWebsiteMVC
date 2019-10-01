@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3d737982cfe483a814fa1b7b5c63a7e" Name="Diagram1">
+        <EntityTypeShape EntityType="CelasisModel.Assignment" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CelasisModel.CiaDetails" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CelasisModel.EndSemester" Width="1.5" PointX="13.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CelasisModel.Faculty" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CelasisModel.Login" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CelasisModel.Semester" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CelasisModel.Student" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CelasisModel.Subject" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="CelasisModel.FK__Assignmen__fac_i__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__Assignmen__stud___3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__Assignmen__sub_i__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__CiaDetail__stud___4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__CiaDetail__sub_i__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__EndSemest__stud___35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__EndSemest__sub_i__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__Faculty__fac_id__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__Subject__fac_id__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__Student__stud_id__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__Student__sem_id__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="CelasisModel.FK__Subject__sem_id__2E1BDC42" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

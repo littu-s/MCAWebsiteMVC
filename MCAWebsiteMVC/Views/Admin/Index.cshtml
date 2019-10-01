@@ -1,0 +1,85 @@
+﻿@model MCAWebsiteMVC.Models.Login
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900; margin-bottom: 20px;">
+            Welcome Administrator
+        </h2>
+        <div class="entry">
+            @using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.uname)
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.pwd, new { htmlAttributes = new { @class = "form-control", placeholder = "Current Password" } })
+                            @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.newPwd, new { htmlAttributes = new { @class = "form-control", placeholder = "New Password" } })
+                            @Html.ValidationMessageFor(model => model.newPwd, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.confirmPwd, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password" } })
+                            @Html.ValidationMessageFor(model => model.confirmPwd, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <label style="color: red; font-weight: normal;">@ViewBag.msg</label>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Change Password" class="btn btn-success btn-md" style="margin-left: 25px;"/>
+                          @*  <input type="submit" value="Cancel" class="btn btn-basic btn-md" style="margin-left: 25px;"/>*@
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="post">
+        <div class="entry">
+            @*<asp:TextBox ID="TextBox4" runat="server" Visible="False"></asp:TextBox>*@
+        </div>
+    </div>
+    
+    <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #content -->
+<div id="sidebar">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Student Details", "Index", "Student")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Faculty Details", "Index", "Faculty")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Change Password", "Index", "Admin")
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Logout", "Index", "Home")
+        </li>   
+    </ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>
