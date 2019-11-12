@@ -166,6 +166,11 @@ figure {
     margin: 0;
     padding: 0;
     font-family: 'Times New Roman', Times, serif; 
+    color: black;
+}
+
+#sidebar ul li{
+    color: black;
 }
 
 #sidebar p {

@@ -230,6 +230,7 @@
       <DependentUpon>CelasisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\FileSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Celasis.mdf" />
@@ -408,6 +409,13 @@
     <Content Include="Views\Exam\CiaMarks.cshtml" />
     <Content Include="Views\Exam\CiaResult.cshtml" />
     <Content Include="Views\Exam\SemResult.cshtml" />
+    <Content Include="Views\Home\Guest.cshtml" />
+    <Content Include="Views\Assignment\Index.cshtml" />
+    <Content Include="Views\Faculty\GuestIndex.cshtml" />
+    <Content Include="Views\Assignment\Details.cshtml" />
+    <Content Include="Views\Faculty\GuestDetails.cshtml" />
+    <Content Include="Views\Student\GuestIndex.cshtml" />
+    <Content Include="Views\Student\GuestDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\media\assignments\" />

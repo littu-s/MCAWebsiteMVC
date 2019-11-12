@@ -23,6 +23,27 @@ namespace MCAWebsiteMVC.Controllers
             return View(faculty.ToList());
         }
 
+        public ActionResult GuestIndex()
+        {
+            var faculty = db.Faculty.Include(f => f.Login);
+            return View(faculty.ToList());
+        }
+
+        public ActionResult GuestDetails(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Faculty faculty = db.Faculty.Find(id);
+            if (faculty == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(faculty);
+        }
+
         public ActionResult Details(string id)
         {
             string user = Session["user"].ToString();

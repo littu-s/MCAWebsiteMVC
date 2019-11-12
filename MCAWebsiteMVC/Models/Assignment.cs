@@ -14,6 +14,7 @@ namespace MCAWebsiteMVC.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
+    using Validation;
 
     public partial class Assignment
     {
@@ -37,6 +38,7 @@ namespace MCAWebsiteMVC.Models
 
         [DisplayName("File")]
         [DataType(DataType.Upload)]
+        [FileSize(MaxSize = 5, ErrorMessage = "File size should be less than 5MB")]
         public HttpPostedFileBase assignUpload { get; set; }
 
         public virtual Faculty Faculty { get; set; }

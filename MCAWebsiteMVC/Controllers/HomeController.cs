@@ -84,6 +84,24 @@ namespace MCAWebsiteMVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Cancel(Login login)
+        {
+            return View("Index");
+        }
+
+        [HttpPost]
+        public ActionResult GuestUser()
+        {
+
+            return View("Guest");
+        }
+
+        public ActionResult Guest()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             return View();

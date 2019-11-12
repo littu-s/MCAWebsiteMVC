@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MCAWebsiteMVC.Models.Faculty>
+
+@{
+    ViewBag.Title = "GuestIndex";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900; margin-bottom: 20px;" align="center">
+            Faculty Details
+        </h2>
+        <div class="entry">
+            <table class="table" id="facultyTable" style="background-color: transparent; font-size: 14px;">
+                <thead style="background-color: transparent;">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Login.uname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fac_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fac_degree)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fac_doj)
+                        </th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody style="background-color: transparent;">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="background-color: transparent;">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Login.uname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fac_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fac_degree)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fac_doj)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Details", "GuestDetails", new { id = item.fac_id }, new { @class = "btn btn-info btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="clear: both;">&nbsp;</div>
+</div>
+
+<div id="sidebar" style="margin-top: 125px;">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Faculty Details", "GuestIndex", "Faculty", null, new { style = "color: black;" })
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Student Details", "GuestIndex", "Student", null, new { style = "color: black;" })
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Assignments Details", "Index", "Assignment", null, new { style = "color: black;" })
+        </li>
+
+    </ul>
+</div>
+<!-- end #sidebar -->

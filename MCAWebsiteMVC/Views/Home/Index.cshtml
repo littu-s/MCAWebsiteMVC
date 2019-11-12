@@ -80,7 +80,7 @@
             <h2 style="margin-bottom: 20px; color: #FF9900; text-decoration: underline; margin-left: 100px; margin-top:20px;">
                 Login
             </h2>
-            @using (Html.BeginForm("LoginAuthenticate", "Home", FormMethod.Post))
+            @using (Html.BeginForm("LoginAuthenticate", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -89,7 +89,7 @@
                     <div class="form-group">
 
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.uname, new { htmlAttributes = new { @class = "form-control", placeholder = "Username", style="margin-left: 25px;" } })
+                            @Html.EditorFor(model => model.uname, new { htmlAttributes = new { @class = "form-control", placeholder = "Username", style = "margin-left: 25px;" } })
                             @Html.ValidationMessageFor(model => model.uname, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -102,14 +102,20 @@
                     </div>
 
                     <label style="margin-left: 20px; color: red;">
-                       @* @Html.DisplayNameFor(model => model.invalidUser )*@
+                        @* @Html.DisplayNameFor(model => model.invalidUser )*@
                         @ViewBag.msg
                     </label>
-                   
+
                     <div class="form-group" style="margin-bottom: 20px; ">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Login" class="btn btn-success" style="margin-right: 15px;"/>
-                            <input type="submit" value="Cancel" class="btn btn-default" />
+                            <input type="submit" name="submitButton" value="Login" formaction="LoginAuthenticate" class="btn btn-success" style="margin-right: 15px;" />
+                            <input type="submit" name="submitButton" value="Cancel" formaction="Cancel" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 20px; ">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" name="submitButton" value="Guest User" class="btn btn-info" style="margin-left: 25px;" formaction="GuestUser" />
                         </div>
                     </div>
                 </div>

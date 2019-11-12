@@ -24,6 +24,13 @@ namespace MCAWebsiteMVC.Controllers
             return View(student.ToList());
         }
 
+        public ActionResult GuestIndex()
+        {
+            var student = db.Student.Include(s => s.Login).Include(s => s.Semester);
+
+            return View(student.ToList());
+        }
+
         public ActionResult Details(string id)
         {
             string uname = Session["user"].ToString();
@@ -40,6 +47,22 @@ namespace MCAWebsiteMVC.Controllers
             Session["user"] = uname;
             return View(student);
         }
+
+        public ActionResult GuestDetails(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Student student = db.Student.Find(id);
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(student);
+        }
+
 
         public ActionResult Create()
         {

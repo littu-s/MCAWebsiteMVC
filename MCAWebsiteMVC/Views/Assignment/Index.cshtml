@@ -1,0 +1,92 @@
+﻿@model IEnumerable<MCAWebsiteMVC.Models.Assignment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="splash"></div>
+
+<div id="content">
+    <div class="post">
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; color: #FF9900; margin-bottom: 20px;">
+            Assignment Details
+        </h2>
+        <div class="entry" style="font-family: 'Times New Roman', Times, serif; font-size: medium">
+            <table class="table" id="assignTable" style="font-size: 14px;">
+                <thead style="background-color: transparent;">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.assign_title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.assign_file)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Faculty.fac_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Student.stud_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject.sub_name)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody style="background-color: transparent;">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="background-color: transparent;">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.assign_title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.assign_file)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Faculty.fac_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Student.stud_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject.sub_name)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.assign_id }, new { @class = "btn btn-info btn-xs" })
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #content -->
+<div id="sidebar" style="margin-top: 75px;">
+    <ul>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Faculty Details", "GuestIndex", "Faculty", null, new { style = "color: black;" })
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Student Details", "GuestIndex", "Student", null, new { style = "color: black;" })
+        </li>
+        <li style="font-family: 'Times New Roman', Times, serif; font-size: medium; font-weight: bold; margin-bottom: 15px;">
+            @Html.ActionLink("Assignments Details", "Index", "Assignment", null, new { style = "color: black;" })
+        </li>
+
+    </ul>
+</div>
+<!-- end #sidebar -->
+
+<script>
+    $(document).ready(function () {
+        $('#assignTable').DataTable();
+    });
+</script>
+

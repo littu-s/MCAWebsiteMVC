@@ -23,6 +23,21 @@ namespace MCAWebsiteMVC.Controllers
             return View(assignment.ToList());
         }
 
+        public ActionResult Details(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Assignment assignment = db.Assignment.Find(id);
+            if (assignment == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(assignment);
+        }
+
         public ActionResult UploadFiles()
         {
             string studId = Session["user"].ToString();
