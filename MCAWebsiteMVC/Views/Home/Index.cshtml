@@ -80,7 +80,7 @@
             <h2 style="margin-bottom: 20px; color: #FF9900; text-decoration: underline; margin-left: 100px; margin-top:20px;">
                 Login
             </h2>
-            @using (Html.BeginForm("LoginAuthenticate", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("LoginAuthenticate", "Home", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
@@ -89,14 +89,14 @@
                     <div class="form-group">
 
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.uname, new { htmlAttributes = new { @class = "form-control", placeholder = "Username", style = "margin-left: 25px;" } })
+                            @Html.EditorFor(model => model.uname, new { htmlAttributes = new { @class = "form-control", placeholder = "Username", style = "margin-left: 25px;", id="uname" } })
                             @Html.ValidationMessageFor(model => model.uname, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.pwd, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", style = "margin-left: 25px;" } })
+                            @Html.EditorFor(model => model.pwd, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", style = "margin-left: 25px;", id="pwd" } })
                             @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -108,36 +108,38 @@
 
                     <div class="form-group" style="margin-bottom: 20px; ">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" name="submitButton" value="Login" formaction="LoginAuthenticate" class="btn btn-success" style="margin-right: 15px;" />
-                            <input type="submit" name="submitButton" value="Cancel" formaction="Cancel" class="btn btn-default" />
+                            <input type="submit" value="Login" class="btn btn-success" style="margin-right: 15px;" />
+                            <input type="button" id="cancelButton" value="Cancel" class="btn btn-default" />
                         </div>
                     </div>
 
                     <div class="form-group" style="margin-bottom: 20px; ">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" name="submitButton" value="Guest User" class="btn btn-info" style="margin-left: 25px;" formaction="GuestUser" />
+                            <input type="button" id="guestButton" value="Guest User" class="btn btn-info" style="margin-left: 25px;" />
                         </div>
                     </div>
                 </div>
+                @Html.Hidden("RedirectTo", Url.Action("Guest", "Home"));
             }
-        </li>
-        
-        @*<li style="margin-bottom: 10px;">
-            <img alt="" src="~/Content/media/images/AICTE.jpg" style="margin-left: 40px; width: 174px; height: 126px;" />
-        </li>
-        <li style="font-family: 'Times New Roman', Times, serif; font-size: small; align-content:center; margin-left: 25px; margin-bottom: 30px;">
-             Our College has a A+ re-accreditation
-        </li>
-        <li style="margin-bottom: 10px;">
-            <img alt="" src="~/Content/media/images/ugc.jpg" style="margin-left: 25px" />
-        </li>
-        <li style="font-family: 'Times New Roman', Times, serif; font-size: small; align-self: center; margin-left: 20px; margin-bottom: 5px;">
-            Recognized by UGC as a College with
-        </li>
-        <li style="font-size: small; margin-left: 20px; margin-bottom: 10px;" align="center"> 
-            Potential for Excellence
-        </li>*@
+        </li>       
     </ul>
 </div>
 <!-- end #sidebar -->
 <div style="clear: both;">&nbsp;</div>
+
+<script>
+    $(document).ready(function () {
+        $("#cancelButton").click(function () {
+            $("#uname").val("");
+            $("#pwd").val("");
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#guestButton").click(function () {
+            window.location.href = "@Url.Action("Guest", "Home", null, "http")" ;
+        });
+    });
+</script>
